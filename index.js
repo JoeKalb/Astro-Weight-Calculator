@@ -2,7 +2,7 @@
 of the calculations will occur*/
 
 // taking care of the reverse title
-var reverseTitle = 'rotaluclaC thgieW ortsA';
+var reverseTitle = document.getElementById("titleCard").innerHTML;
 var len = reverseTitle.length;
 var newTitle = "";
 for (var j = 0; j < len; j++){
@@ -27,11 +27,9 @@ var planets = [
 ];
 
 // creating the dropdown list
-//var planetNameArray;
 for(var i = 0; i < planets.length; i++){
 	var planetName = document.createElement("option");
 	planetName.innerHTML = planets[i].planet;
-	planetNameArray = planets[i].planet;
 	select.appendChild(planetName);
 }
 
@@ -43,8 +41,10 @@ function newWeight(){
 	// change to accessing original array
 	var planetNameArray = ['Sun', 'Mercury', 'Venus', 'Earth', 'Moon', 'Mars', 
 		'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-
-	var planetPostion = planetNameArray.indexOf(planetSelected);
-	document.getElementById("answer").innerHTML = "If you were on " + planetSelected +
-		", you would weight " + (weight * planets[planetPostion].gravity).toFixed(2) + "lbs!";
+	var planetPosition = planetNameArray.indexOf(planetSelected);
+	var notPronoun = "";
+	// adds the word "the" for the sun and moon
+	if (planetPosition === 0 || planetPosition === 4) notPronoun = "the ";
+	document.getElementById("answer").innerHTML = "If you were on " + notPronoun + planetSelected +
+		", you would weight " + (weight * planets[planetPosition].gravity).toFixed(2) + "lbs!";
 }
