@@ -38,13 +38,18 @@ function newWeight(){
 	var weight = document.getElementById("weight").value;
 	var something = document.getElementById("names");
 	var planetSelected = something.options[something.selectedIndex].text;
-	// change to accessing original array
-	var planetNameArray = ['Sun', 'Mercury', 'Venus', 'Earth', 'Moon', 'Mars', 
-		'Jupiter', 'Saturn', 'Uranus', 'Neptune', 'Pluto'];
-	var planetPosition = planetNameArray.indexOf(planetSelected);
+	var planetPosition = whichOne(planetSelected);
 	var notPronoun = "";
 	// adds the word "the" for the sun and moon
 	if (planetPosition === 0 || planetPosition === 4) notPronoun = "the ";
 	document.getElementById("answer").innerHTML = "If you were on " + notPronoun + planetSelected +
 		", you would weight " + (weight * planets[planetPosition].gravity).toFixed(2) + "lbs!";
 }
+
+// Finds the position of the of the array that the user selected and returns the position
+function whichOne(name){
+	for(var i = 0; 0 < planets.length; i++){
+		if (name === planets[i].planet) return i;
+	}
+}
+
